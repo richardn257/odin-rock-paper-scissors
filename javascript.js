@@ -7,28 +7,55 @@ function computerPlay() {
 function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
     computerSelection = computerSelection.toLowerCase();
-    let res = "";
+    let res, str;
     if (playerSelection == "rock") {
-        if (computerSelection == "rock")
-            res = "Tie! Both are Rock";
-        else if (computerSelection == "paper")
-            res = "You Lose! Paper beats Rock";
-        else
-            res = "You win! Rock beats Scissor"
+        if (computerSelection == "rock") {
+            str = "Tie! Both are Rock";
+            console.log(str);
+            res = 2;
+        }
+        else if (computerSelection == "paper") {
+            str = "You Lose! Paper beats Rock";
+            console.log(str);
+            res = 1;
+        }
+        else {
+            str = "You win! Rock beats Scissor";
+            console.log(str);
+            res = 0;
+        }
     } else if (playerSelection == "paper") {
-        if (computerSelection == "rock")
-            res = "You Win! Paper beats Rock";
-        else if (computerSelection == "paper")
-            res = "Tie! Both are Paper";
-        else
-            res = "You Lose! Scissor beats Paper"
+        if (computerSelection == "rock") {
+            str = "You Win! Paper beats Rock";
+            console.log(str);
+            res = 0;
+        }
+        else if (computerSelection == "paper") {
+            str = "Tie! Both are Paper";
+            console.log(str);
+            res = 2;
+        }
+        else {
+            str = "You Lose! Scissor beats Paper";
+            console.log(str);
+            res = 1;
+        }
     } else {
-        if (computerSelection == "rock")
-            res = "You Lose! Rock beats Scissor";
-        else if (computerSelection == "paper")
-            res = "You Win! Scissor beats Paper";
-        else
-            res = "Tie! Both are Scissor";
+        if (computerSelection == "rock") {
+            str = "You Lose! Rock beats Scissor";
+            console.log(str);
+            res = 1;
+        }
+        else if (computerSelection == "paper") {
+            str = "You Win! Scissor beats Paper";
+            console.log(str);
+            res = 0;
+        }
+        else {
+            str = "Tie! Both are Scissor";
+            console.log(str);
+            res = 2;
+        }
     }
     return res;
 }
@@ -37,8 +64,23 @@ function game() {
     let userWin = 0, compWin = 0;
     for (let i = 0; i < 5; i++) {
         let input = prompt("Type in rock, paper, scissor");
-        playRound(input, computerPlay());
+        let res = playRound(input, computerPlay());
+        if (!res) {
+            console.log("Round " + (i + 1) + ": You win!");
+            userWin++;
+        }
+        else if (res == 1) {
+            console.log("Round " + (i + 1) + ": You lose!");
+            compWin++;
+        }
+        else {
+            
+        }
     }
+    if (userWin > compWin)
+        console.log("You win! You won " + userWin + " games out of " + (userWin + compWin));
+    else
+        console.log("You lose! You lost " + compWin + " games out of " + (userWin + compWin));
 }
 
 game();
