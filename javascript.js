@@ -61,26 +61,36 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-    let userWin = 0, compWin = 0;
+    let userWin = 0, compWin = 0, totGames = 0;
     for (let i = 0; i < 5; i++) {
         let input = prompt("Type in rock, paper, scissor");
         let res = playRound(input, computerPlay());
         if (!res) {
-            console.log("Round " + (i + 1) + ": You win!");
+            console.log("Round " + (i + 1) + ": Player!");
             userWin++;
         }
         else if (res == 1) {
-            console.log("Round " + (i + 1) + ": You lose!");
+            console.log("Round " + (i + 1) + ": Computer!");
             compWin++;
         }
         else {
-            
+            console.log("Round " + (i + 1) + ": Tie!");
         }
+        totGames++;
     }
+
+    console.log("The winner of the game is...");
     if (userWin > compWin)
-        console.log("You win! You won " + userWin + " games out of " + (userWin + compWin));
+        console.log("Player!");
+    else if (compWin > userWin)
+        console.log("Computer!");
     else
-        console.log("You lose! You lost " + compWin + " games out of " + (userWin + compWin));
+        console.log("No one!");
+
+    console.log("\nHere are your results:")
+    console.log("Win: " + userWin);
+    console.log("Lose: " + compWin);
+    console.log("Tie: " + (totGames - (userWin + compWin)));
 }
 
 game();
