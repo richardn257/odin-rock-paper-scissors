@@ -4,6 +4,7 @@ function computerPlay() {
     return choices[randomNum];
 }
 
+let userWin = 0, compWin = 0, i = 0;
 function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
     computerSelection = computerSelection.toLowerCase();
@@ -57,25 +58,39 @@ function playRound(playerSelection, computerSelection) {
             res = 2;
         }
     }
-    return res;
+
+    if (!res) {
+        console.log("Round " + (i + 1) + ": Player!");
+        userWin++;
+    }
+    else if (res == 1) {
+        console.log("Round " + (i + 1) + ": Computer!");
+        compWin++;
+    }
+    else {
+        console.log("Round " + (i + 1) + ": Tie!");
+    }
+    i++;
 }
 
 function game() {
-    let userWin = 0, compWin = 0, totGames = 0;
-    while (userWin != 5 && compWin != 5) {
-        // let input = prompt("Type in rock, paper, scissor");
-        // let res = playRound(input, computerPlay());
-        if (!res) {
-            console.log("Round " + (i + 1) + ": Player!");
-            userWin++;
-        }
-        else if (res == 1) {
-            console.log("Round " + (i + 1) + ": Computer!");
-            compWin++;
-        }
-        else {
-            console.log("Round " + (i + 1) + ": Tie!");
-        }
+    let totGames = 0;
+    while (userWin !== 5 && compWin !== 5) {
+        const rockButn = document.querySelector('.rock');
+        rockButn.addEventListener('click', function() {
+            playRound("rock", computerPlay())
+        });
+        
+        const paperButn = document.querySelector('.paper');
+        paperButn.addEventListener('click', () => {
+            playRound("paper", computerPlay());
+        });
+        
+        const scissorsButn = document.querySelector('.scissors');
+        scissorsButn.addEventListener('click', () => {
+            playRound("scissors", computerPlay());
+        });
+
         totGames++;
     }
 
@@ -93,22 +108,8 @@ function game() {
     console.log("Tie: " + (totGames - (userWin + compWin)));
 }
 
-const rockButn = document.querySelector('.rock');
-rockButn.addEventListener('click', function() {
-    playRound("rock", computerPlay())
-});
 
-const paperButn = document.querySelector('.paper');
-paperButn.addEventListener('click', () => {
-    playRound("paper", computerPlay());
-});
-
-const scissorsButn = document.querySelector('.scissors');
-scissorsButn.addEventListener('click', () => {
-    playRound("scissors", computerPlay());
-});
-
-// game();
+game();
 // const playerSelection = "ROCK";
 // const computerSelection = computerPlay();
 // console.log("Computer chose: " + computerSelection);
