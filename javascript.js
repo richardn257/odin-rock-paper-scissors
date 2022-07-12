@@ -62,9 +62,9 @@ function playRound(playerSelection, computerSelection) {
 
 function game() {
     let userWin = 0, compWin = 0, totGames = 0;
-    for (let i = 0; i < 5; i++) {
-        let input = prompt("Type in rock, paper, scissor");
-        let res = playRound(input, computerPlay());
+    while (userWin != 5 && compWin != 5) {
+        // let input = prompt("Type in rock, paper, scissor");
+        // let res = playRound(input, computerPlay());
         if (!res) {
             console.log("Round " + (i + 1) + ": Player!");
             userWin++;
@@ -93,8 +93,22 @@ function game() {
     console.log("Tie: " + (totGames - (userWin + compWin)));
 }
 
-game();
+const rockButn = document.querySelector('.rock');
+rockButn.addEventListener('click', function() {
+    playRound("rock", computerPlay())
+});
 
+const paperButn = document.querySelector('.paper');
+paperButn.addEventListener('click', () => {
+    playRound("paper", computerPlay());
+});
+
+const scissorsButn = document.querySelector('.scissors');
+scissorsButn.addEventListener('click', () => {
+    playRound("scissors", computerPlay());
+});
+
+// game();
 // const playerSelection = "ROCK";
 // const computerSelection = computerPlay();
 // console.log("Computer chose: " + computerSelection);
