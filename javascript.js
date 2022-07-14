@@ -91,8 +91,8 @@ function playRound(playerSelection, computerSelection) {
     totGames++;
     i++;
 
-    playerPts.textContent = "Player: " + userWin;
-    compPts.textContent = "Computer: " + compWin;
+    playerPts.textContent = "Player: " + userWin + " pts";
+    compPts.textContent = "Computer: " + compWin + " pts";
     container.append(playerPts);
     container.append(compPts);
     if (userWin == 5 || compWin == 5) {
@@ -105,11 +105,10 @@ function playRound(playerSelection, computerSelection) {
             winner.textContent = winner.textContent + "\nNo one!";
 
         hereResults.textContent = "Here are your results:";
-        winner.textContent = winner.textContent + "Win: " + userWin;
-        winner.textContent = winner.textContent + "Lose: " + compWin;
-        winner.textContent = winner.textContent + "Tie: " + (totGames - (userWin + compWin));
+        winLoseTie.textContent = `Win: ${userWin} Lose: ${compWin} Tie: ${totGames - (userWin + compWin)}`;
         userWin = 0, compWin = 0, i = 0, totGames = 0;
         winner.append(hereResults);
+        winner.append(winLoseTie);
         container.append(winner);
     }
 }
@@ -142,3 +141,5 @@ const winner = document.createElement('div');
 winner.classList.toggle('winner');
 const hereResults = document.createElement('div');
 hereResults.classList.toggle('hereResults');
+const winLoseTie = document.createElement('div');
+winLoseTie = document.toggle('winLoseTie');
